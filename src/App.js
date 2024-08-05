@@ -11,7 +11,12 @@ export default function App({ $target }) {
     todoList.setState(nextState);
   };
 
-  new Header({ $target });
+  const header = new Header({ $target });
+
+  setTimeout(() => {
+    header.setState("변화 감지 할일");
+  }, 3000);
+
   new TodoForm({
     $target,
     onSumbit,
