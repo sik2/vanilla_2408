@@ -9,12 +9,21 @@ export default function App({ $target }) {
     { id: 3, text: "item3", checked: false },
   ];
 
-  let lastId = 4;
+  const length = intialState.length;
+  let lastId = intialState[length - 1].id;
 
   const onSumbit = (text) => {
-    const nextState = [...todoList.state, { id: lastId, text, checked: false }];
-    todoList.setState(nextState);
+    const nextState = todoList.state.concat([
+      {
+        id: lastId + 1,
+        text,
+        checked: false,
+      },
+    ]);
+
+    console.log(nextState);
     lastId++;
+    todoList.setState(nextState);
   };
 
   const onDelete = (id) => {
