@@ -30,10 +30,19 @@ export default function App({ $target }) {
     const nextState = todoList.state.filter((todo) => todo.id !== id);
     todoList.setState(nextState);
   };
+
+  const onToggle = (id) => {
+    const nextState = todoList.state.map((todo) =>
+      todo.id === id ? { ...todo, checked: !todo.checked } : todo
+    );
+    console.log(nextState);
+    todoList.setState(nextState);
+  };
+
   const header = new Header({ $target });
   new TodoForm({
     $target,
     onSumbit,
   });
-  const todoList = new TodoList({ $target, intialState, onDelete });
+  const todoList = new TodoList({ $target, intialState, onDelete, onToggle });
 }
